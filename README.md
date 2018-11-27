@@ -1,4 +1,4 @@
-Overview
+PROJECT
 ========
 
 astr8300_rappture is a sample package for Astr8300 rappture projects
