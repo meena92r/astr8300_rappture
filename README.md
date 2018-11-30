@@ -12,11 +12,11 @@ You will need a computer with [rappture](https://nanohub.org/infrastructure/rapp
 * cd astr8300_rappture
 * rappture
 
-An equation: 
+<b>An equation: 
 
 <em>&nabla;<sup>2</sup>&phi;</em> = 4<em>&pi;</em>g
 
-Edited by Meena
+Edited by Meena</b>
 
 Authors
 -------
