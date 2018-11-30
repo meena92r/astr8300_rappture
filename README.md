@@ -16,7 +16,7 @@ You will need a computer with [rappture](https://nanohub.org/infrastructure/rapp
 
 <em>&nabla;<sup>2</sup>&phi;</em> = 4<em>&pi;</em>g
 
-Edited by Meena</b>
+Edited by Meena </b>
 
 Authors
 -------
