@@ -20,10 +20,10 @@ import numpy as np
 from scipy.integrate import odeint
 from scipy import optimize
 
-def f(x, a, formula):
+def f(x, formula):
     return eval(formula)
 
-def calc(y, x, a, formula):
+def calc(y, x, formula):
     return eval(formula)
 
 def main():
@@ -36,7 +36,11 @@ def main():
     formula = io.get('input.string(formula).current')
 
     x = np.linspace(xmin, xmax, npts)
-    sol = odeint(calc, y0, x, args=(1, formula))
+    sol = odeint(calc, y0, x, args=(formula,))
+
+    io.put('output.curve(result0).about.label','f(X) vs X',append=0)
+    io.put('output.curve(result0).yaxis.label','f(X)')
+    io.put('output.curve(result0).xaxis.label','X')
 
     io.put('output.curve(result1).about.label','Integral of f(X) vs X',append=0)
     io.put('output.curve(result1).yaxis.label','Integral of f(X)')
@@ -44,11 +48,15 @@ def main():
 
     for i in range(npts):
         io.put(
+               'output.curve(result0).component.xy',
+               '%g %g\n' % (x[i],f(x[i],formula)), append=1
+              )
+        io.put(
                'output.curve(result1).component.xy',
                '%g %g\n' % (x[i],sol[i][0]), append=1
               )
 
-    root = optimize.brentq(f, xmin, xmax, args=(1,formula))
+    root = optimize.brentq(f, xmin, xmax, args=(formula,))
 
     my_str = 'Root of f(x) in the range ' + str(xmin) + ' to ' + \
              str(xmax) + ' is ' + str(root)
