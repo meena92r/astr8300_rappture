@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<run>
+    <tool>
+        <title>Integrating and Graphing Calculator</title>
+        <about>Press Simulate to view results.</about>
+        <command>python @tool/HW39.py @driver</command>
+    </tool>
+    <input>
+        <string id="formula">
+            <about>
+                <label>f(x)</label>
+                <hints>Example: 2*x + 1</hints>
+            </about>
+            <size>30x5</size>
+	    <default>2*x+1</default>
+        </string>
+        <number id="min">
+            <about>
+		<label>From x</label>
+		<description>This is the starting point.</description>
+	    </about>
+            <default>-1</default>
+        </number>
+        <number id="max">
+	    <about>
+	  	<label>To x</label>
+		<description>This is the ending point</description>
+	    </about>
+            <default>1</default>
+        </number>
+        <number id="Y0">
+            <about>
+	        <label>Y0</label>
+		<description>The value of Y at the minimum X</description>
+	    </about>
+            <default>0</default>
+        </number>
+        <number id="Npts">
+            <about>
+	        <label>Number of points</label>
+		<description>This is the number of points at which to do the integral</description>
+	    </about>
+            <default>100</default>
+	    <min>10</min>
+        </number>
+    </input>
+</run>
