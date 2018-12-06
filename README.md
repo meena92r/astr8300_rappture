@@ -1,7 +1,7 @@
-PROJECT
+PROJECT: Yields tool
 ========
 
-astr8300_rappture is a sample package for Astr8300 rappture projects
+Using wnutils and Rappture.
 
 Installation
 ------------
