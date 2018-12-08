@@ -6,20 +6,85 @@
         <command>python @tool/yields.py @driver</command>
     </tool>
     <input>
-        <string id="sp">
+        <choice id="sp">
             <about>
                 <label>Species</label>
-                <hints>Example: o16</hints>
             </about>
-            <size>30x5</size>
+	    <size>30x5</size>
+	    <option>
+		<about>
+		    <label>o16</label>
+		</about>
+		<value>o16</value>
+	    </option>
+	    <option>
+		<about>
+		    <label>n15</label>
+		</about>
+		<value>n15</value>
+	    </option>
+	    <option>
+		<about>
+		    <label>si28</label>
+		</about>
+		<value>si28</value>
+	    </option>
+            <option>
+		<about>
+		    <label>f19</label>
+		</about>
+		<value>f19</value>
+	    </option>
+ 	    <option>
+		<about>
+		    <label>ne20</label>
+		</about>
+		<value>ne20</value>
+	    </option>
+            <option>
+		<about>
+		    <label>c12</label>
+		</about>
+		<value>c12</value>
+	    </option>
 	    <default>o16</default>
-        </string>
-        <number id="Z">
+        </choice>
+        <choice id="Z">
             <about>
 		<label>Z</label>
 		<description>Value of metallicity</description>
 	    </about>
+            <option>
+		<about>
+		    <label>0.01</label>
+		</about>
+		<value>0.01</value>
+	    </option>
+            <option>
+		<about>
+		    <label>0.1</label>
+		</about>
+		<value>0.1</value>
+	    </option>
+    	    <option>
+		<about>
+		    <label>1.e-4</label>
+		</about>
+		<value>1.e-4</value>
+	    </option>
+            <option>
+		<about>
+		    <label>2</label>
+		</about>
+		<value>2</value>
+	    </option>
+            <option>
+		<about>
+		    <label>1</label>
+		</about>
+		<value>1</value>
+	    </option>
             <default>0.01</default>
-        </number>
+        </choice>
     </input>
 </run>
