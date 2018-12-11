@@ -11,14 +11,19 @@ def main():
     io = Rappture.library(sys.argv[1])
 
     species = io.get('input.string(sp).current')
-    z = float(io.get('input.number(Z).current'))
+    z = io.get('input.number(Z).current')
 
 #    zone_xpath = '[@label3 = ' + z + ']'
 #    zone_xpath = z #'[@label3 = 0.01]'
-#     print zone_xpath,str(z)
 
     zone_xpath = '[@label3 = ' + str(z) + ']'
+    print zone_xpath,str(z)
     mass_fractions = xml.get_mass_fractions([species], zone_xpath = zone_xpath)
+
+    if len(mass_fractions[species]) == 0:
+       print(species + ' not present in collection')
+       exit()
+
     x = mass_fractions[species]
 
     props = xml.get_properties_as_floats([property], zone_xpath = zone_xpath)
