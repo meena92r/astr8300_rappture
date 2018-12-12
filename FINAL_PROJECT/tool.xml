@@ -19,35 +19,29 @@
 		<description>Value of metallicity</description>
 	    </about>
             <preset>
-		<about>
-		    <label>0.01</label>
-		</about>
+		<label>0.</label>
+		<value>0.</value>
+	    </preset>
+            <preset>
+		<label>1.e-4</label>
+		<value>1.e-4</value>
+	    </preset>
+    	    <preset>
+	 	<label>0.01</label>
 		<value>0.01</value>
 	    </preset>
             <preset>
-		<about>
-		    <label>0.1</label>
-		</about>
+		<label>0.1</label>
 		<value>0.1</value>
 	    </preset>
-    	    <preset>
-		<about>
-		    <label>1.e-4</label>
-		</about>
-		<value>1.e-4</value>
-	    </preset>
             <preset>
-		<about>
-		    <label>2</label>
-		</about>
-		<value>2</value>
-	    </preset>
-            <preset>
-		<about>
-		    <label>1</label>
-		</about>
+		<label>1</label>
 		<value>1</value>
-	    </preset>
+            </preset>
+	    <preset>
+                <label>2</label>
+                <value>2</value>
+            </preset>
             <default>0.01</default>
         </number>
     </input>

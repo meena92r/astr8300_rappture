@@ -7,35 +7,43 @@ import wnutils.xml as wx
 def main():
     xml = wx.Xml('ww.xml')
 
-    property = 'initial mass'
+    properties = ['initial mass', 'total ejected mass']
     io = Rappture.library(sys.argv[1])
 
     species = io.get('input.string(sp).current')
     z = io.get('input.number(Z).current')
 
-#    zone_xpath = '[@label3 = ' + z + ']'
-#    zone_xpath = z #'[@label3 = 0.01]'
-
     zone_xpath = '[@label3 = ' + str(z) + ']'
-    print zone_xpath,str(z)
     mass_fractions = xml.get_mass_fractions([species], zone_xpath = zone_xpath)
-
-    if len(mass_fractions[species]) == 0:
-       print(species + ' not present in collection')
-       exit()
 
     x = mass_fractions[species]
 
-    props = xml.get_properties_as_floats([property], zone_xpath = zone_xpath)
-    mass = props[property]
+    if len(x) == 0:
+        my_str = 'Invalid metallicity'
+        io.put('output.string(result0).about.label', 'Diagnostic')
+        io.put('output.string(result0).current', my_str)
+        Rappture.result(io)
+        exit()
+
+    props = xml.get_properties_as_floats(properties, zone_xpath = zone_xpath)
+
+    mass = props['initial mass']
+    ejected_mass = props['total ejected mass']
 
     # Sort lists by stellar mass
 
-    mass, x = zip(*sorted(zip(mass, x)))
+    mass, x, ejected_mass = zip(*sorted(zip(mass, x, ejected_mass)))
 
-    io.put('output.curve(result0).about.label','z',append=0)
-    io.put('output.curve(result0).yaxis.label','X')
-    io.put('output.curve(result0).xaxis.label','M')
+    label_str0 = 'Yields for ' + species
+    label_str1 = 'Ejected mass (in solar masses) of ' + species
+
+    io.put('output.curve(result0).about.label', label_str0,append=0)
+    io.put('output.curve(result0).xaxis.label','Stellar Mass (solar masses)')
+    io.put('output.curve(result0).yaxis.label', 'Mass Fraction')
+    
+    io.put('output.curve(result1).about.label', label_str1,append=0)
+    io.put('output.curve(result1).xaxis.label','Stellar Mass (solar masses)')
+    io.put('output.curve(result1).yaxis.label', 'Ejected Mass')
     
 
     for i in range(len(mass)):
@@ -43,7 +51,14 @@ def main():
                 'output.curve(result0).component.xy',
                 '%g %g\n' % (mass[i],x[i]), append=1
               )    
+        io.put(
+                'output.curve(result1).component.xy',
+                '%g %g\n' % (mass[i],x[i] * ejected_mass[i]), append=1
+              )    
     
+    io.put('output.string(result2).about.label', 'Diagnostic', append=0)
+    io.put('output.string(result2).current', 'Metallicity found')
+
     Rappture.result(io)
     
     
